@@ -14,16 +14,9 @@ use Validator;
 use Illuminate\Support\Str; 
 use DB;
 use Carbon\Carbon;
-use Auth;
 
 class HomeController extends Controller
 {
-    // Kiem tra xac thuc khi client chua dang nhap
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:client');
-    // }
-
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +27,7 @@ class HomeController extends Controller
         $products = Product::where('isdelete','0')->orderBy('created_at', 'desc');
         $abouts = About::take(1)->get(); 
         $categories = Category::where('isdelete','0')->get(); 
+        
         foreach ($categories as $key => $value) {
             $listquantity[] = $this->countProduct($value->id);
         }
@@ -46,6 +40,7 @@ class HomeController extends Controller
         }
         if ($request->price) {
             
+
         }
         $products = $products->paginate(8)->appends(request()->query());
         return view('user.home.product',compact('products','abouts','categories','listquantity'));
@@ -83,7 +78,10 @@ class HomeController extends Controller
         $categories = Category::where('isdelete','0')->get(); 
         $product = Product::findOrfail($id);
         $abouts = About::take(1)->get(); 
-        return view('user.home.productdetail',compact('product','categories','abouts'));
+        $colors = DB::table('product_details')->where('product_id',$id)->get();
+        $sizes = DB::table('product_details')->where('product_id',$id)->get();
+        return view('user.home.productdetail',compact('product','categories','abouts','colors','sizes'));
+        
     }
 
     /**
@@ -119,7 +117,6 @@ class HomeController extends Controller
     {
         //
     }
-   
     public function homepage()
     {
         $abouts = About::take(1)->get();

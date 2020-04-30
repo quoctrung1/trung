@@ -17,12 +17,6 @@ use Carbon\Carbon;
 
 class ProductController extends Controller
 {
-    // Kiem tra xac thuc khi admin chua dang nhap
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
     public function getCategory()
     {
         return Category::all();
