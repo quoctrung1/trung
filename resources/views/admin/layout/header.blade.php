@@ -23,15 +23,25 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('assets/img/user.png')}}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('assets/img/apple-icon.png')}}" class="img-circle" alt="Avatar"> <span>{{ Auth::guard('admin')->user()->username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                         <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                        <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                        <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                        <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>                        
+                        <!-- Logout Button -->
+                        <li>
+                            <a class="dropdown-item" href="{{ url('/admin/logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                <i class="lnr lnr-exit"></i> <span>Logout</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/admin/logout') }}" method="GET" style="display: block;">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </li>
-                
             </ul>
         </div>
     </div>

@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\About;
 
 class CartController extends Controller
 {
-    public function index()
+    // Kiem tra xac thuc khi client chua dang nhap
+    public function __construct()
     {
-        
+        $this->middleware('auth:client');
     }
-    public function cart()
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $abouts = About::take(1)->get(); 
         return view('user.home.cart',compact('abouts'));

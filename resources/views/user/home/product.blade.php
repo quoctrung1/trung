@@ -149,21 +149,22 @@
 								<h2>Filter by Price</h2>
 							</div>
 							<ul class="product-categories">
-								<?php
-									if (isset($products)) {
-										$list = array();
-										foreach ($products as $key => $price) {
-											$list[] = $price->price;
-										}
-										sort($list);
-									}
-									?>
-									@foreach($list as $price)
-									<li class="col-md-12" hidden="{{$price}}">
-										<input type="radio" name="price" id="price2" class="col-md-1" value="{{$price}}" style="margin-top: 7px;">
-										<label for="price2" class="col-md-9">{{$price}}</label>
-									</li>
-									@endforeach
+								<li class="col-md-12">
+									<input type="radio" name="price" id="price1" class="col-md-1" value="<100" style="margin-top: 7px;">
+									<label for="price1" class="col-md-9">>$200</label>
+								</li>
+								<li class="col-md-12">
+									<input type="radio" name="price" id="price2" class="col-md-1" value="200-400" style="margin-top: 7px;">
+									<label for="price2" class="col-md-9">$200-$400</label>
+								</li>
+								<li class="col-md-12">
+									<input type="radio" name="price" id="price3" class="col-md-1" value="400-700" style="margin-top: 7px;">
+									<label for="price3" class="col-md-9">$400-$700</label>
+								</li>
+								<li class="col-md-12">
+									<input type="radio" name="price" id="price4" class="col-md-1" value=">700" style="margin-top: 7px;">
+									<label for="price4" class="col-md-9">>$700</label>
+								</li>
 							</ul>
 						</div>
 						<!-- single widget -->

@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('order_code')->unique();
-            $table->double('total_amount', 8, 2);
+            $table->integer('total_amount');
             $table->string('status');
             $table->date('transaction_date');
             $table->bigInteger('user_id')->unsigned();

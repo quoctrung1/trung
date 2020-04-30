@@ -16,7 +16,7 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->Integer('productdetail_id')->unsigned();
+            $table->bigInteger('productdetail_id')->unsigned();
             $table->foreign('productdetail_id')
             ->references('id')
             ->on('product_details')

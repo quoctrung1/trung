@@ -73,7 +73,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">	
 				<div class="copy_text ">
-					<p>Copyright &copy; 2016 <a href="#">DevItems</a>. All Right Reserved.</p>
+					<p>Copyright &copy; 2016 by my team.</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 hidden-sm hidden-xs ">	
@@ -81,10 +81,22 @@
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">	
 				<div class="copy_menu">
 					<ul>
-						<li><a href="">Blog</a></li>
-						<li><a href="">Shop</a></li>
+						<li><a href="/">Shop</a></li>
 						<li><a href="">Contact Us</a></li>
-						<li><a href="">Login</a></li>
+						@auth('client')
+						<li><a href="{{ url('/profile') }}" style="color: black;">{{ Auth::guard('client')->user()->username}}</a></li>
+						<li>
+							<a class="dropdown-item" href="{{ url('/') }}"	onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+							<form id="logout-form" action="{{ url('/logout') }}" method="GET" style="display: none;">
+								@csrf
+							</form>
+						</li>
+						@else
+						<li><a href="{{ url('/login') }}">Login</a></li>
+						<li><a href="{{ url('/register') }}">Register</a></li>
+						@endauth
 					</ul>
 				</div>
 			</div>

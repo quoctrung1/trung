@@ -1,4 +1,3 @@
-<!-- Preloader -->
 <div id="preloader">
 </div>	
 <!--START HEADER TOP AREA  -->
@@ -12,16 +11,30 @@
 					</div>
 					<div class="header_top_right_menu pull-right ">
 						<ul>
-							<li><a href="">Blog</a></li>
-							<li><a href="">Shop</a></li>
-							<li><a href="">Contact Us</a></li>
-							<li><a href="">Login</a></li>
+							<li><a href="/">Shop</a></li>
+							<li><a href="">Contact Us</a></li> 
+							@auth('client')
+							<li><a href="{{ url('/profile') }}" style="color: white;">{{ Auth::guard('client')->user()->username}}</a></li>
+							<li>
+								<a class="dropdown-item" href="{{ url('/') }}"
+								onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+							<form id="logout-form" action="{{ url('/logout') }}" method="GET" style="display: none;">
+								@csrf
+							</form>
+							</li>
+							@else
+							<li><a href="{{ url('/login') }}">Login</a></li>
+							<li><a href="{{ url('/register') }}">Register</a></li>
+							@endauth
 						</ul>
 					</div>
-				</div>				
-			</div>
+				</div>
+			</div>				
 		</div>
 	</div>
+</div>
 </div>
 <!--END HEADER TOP AREA  -->
 
@@ -46,14 +59,14 @@
 					<a href="/"><img src="{{asset('client/img/logo.png')}}" alt="" id="logo" style="width: 70%; height: 40px;" /></a>
 				</div>			
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 ">							
+			<div class="col-lg-3 col-md-3 col-sm-3 ">							
 				<div class="search">
 					<form action="/products" method="GET">
 						<input type="text" class="form-control" name="productname" placeholder="Search…" />
 					</form>	
 				</div>		
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-3 ">
+			<div class="col-lg-3 col-md-3 col-sm-4 ">
 				<div class="cart-wishlist">
 					<ul>
 						<li>
@@ -64,7 +77,7 @@
 										@if(session('cart'))
 										<div class="cart-count text-center">
 											<strong>
-						                        {{count(session('cart'))}}
+												{{count(session('cart'))}}
 											</strong>
 										</div>
 										@endif
@@ -72,10 +85,21 @@
 								</div>	
 							</a>	
 						</li>
+						<li>
+							@auth('client')
+							<a href="{{ url('/profile') }}">
+								<div class="wishlist cart-inner">
+									<div class="cart-icon">
+										<i class="fas fa-user"></i>
+									</div>
+								</div>	
+							</a>
+							@endauth	
+						</li>
 					</ul>
 				</div>		
 			</div>
 		</div>
 	</div>
 </div>
-	<!--END HEADER TOP AREA  -->
+	<!--END HEADER TOP AREA -->

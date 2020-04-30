@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\About;
 
-class ImageController extends Controller
+class ClientController extends Controller
 {
-    // Kiem tra xac thuc khi admin chua dang nhap
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:client');
+    }
     public function index()
     {
-        //
+        $abouts = About::take(1)->get(); 
+        return view('user.profile.info',compact('abouts'));
     }
 
     /**

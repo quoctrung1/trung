@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+    // Kiem tra xac thuc khi admin chua dang nhap
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *

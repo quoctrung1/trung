@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Client;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -37,35 +40,71 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:admin');
+        $this->middleware('guest:client');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+    public function showAdminRegisterForm()
+    {
+        return view('admin.auth.register', ['url' => 'admin']);
+    }
+
+    public function showClientRegisterForm()
+    {
+        return view('user.auth.register', ['url' => 'client']);
+    }
+
+    // validator
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
+            'confirm_password' => 'required|required_with:password|same:password',
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
+    // Admin ko co register de tam day test thu
+    protected function createAdmin(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $this->validator($request->all())->validate();
+        $admin = User::create([
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'address' => $request['address'],
+            'phone' => $request['phone'],
+            'username' => $request['username'],
+            'level' => 1,
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'confirm_password' => bcrypt($request['confirm_password']),
+            'isdelete' => false,
         ]);
+        return redirect()->intended('/admin/login');
     }
+
+    // Register Client
+    protected function createClient(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $writer = User::create([
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'address' => $request['address'],
+            'phone' => $request['phone'],
+            'username' => $request['username'],
+            'level' => 2,
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'confirm_password' => bcrypt($request['confirm_password']),
+            'isdelete' => false,
+        ]);
+        return redirect('/login');
+    }
+
 }
