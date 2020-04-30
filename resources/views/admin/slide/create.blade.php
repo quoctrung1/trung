@@ -18,7 +18,7 @@
 			</div>
 			<div class="form-group {{ $errors->has('url_img') ?'has-error':'' }}">
 				{{Form::label('Url img:')}}
-				<input multiple="multiple" name="url_img" type="file" class="form-control">
+				<input  name="url_img" type="file" class="form-control">
 				<span class="text-danger">{{ $errors->first('url_img')}}</span>
 			</div>
 			<div class="form-group {{ $errors->has('display_order') ?'has-error':'' }}">

@@ -20,7 +20,7 @@
 		<div class="form-group col-12">
 			{{ Form::label('description','Description : ')}}
 				<br>
-				<textarea name=description id="editor" cols="" rows="10" class="col-md-8"></textarea>
+				{{ Form::textarea('description',$brand->description,['id'=>'editor'])}}
 				<br>
 			<span class="text-danger">{{ $errors->first('description')}}</span>
 		</div>

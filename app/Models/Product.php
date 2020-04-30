@@ -19,4 +19,8 @@ class Product extends Model
     {
         return $this->HasMany('App\Models\Order_Detail');
     }
+    public function product_detail()
+    {
+        return $this->hasMany('App\Models\Product_Detail'); 
+    }
 }

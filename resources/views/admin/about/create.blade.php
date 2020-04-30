@@ -20,9 +20,14 @@
 						{{ Form::text('title','',['class'=>'form-control'])}}
 						<span class="text-danger">{{ $errors->first('title')}}</span>
 					</div>
+					<div class="form-group col-md-12 {{ $errors->has('name') ?'has-error':'' }}">
+						{{ Form::label('name','Name : ')}}
+						{{ Form::text('name','',['class'=>'form-control'])}}
+						<span class="text-danger">{{ $errors->first('name')}}</span>
+					</div>
 					<div class="form-group col-md-12 {{ $errors->has('content') ?'has-error':'' }}">
 						{{ Form::label('content','Content: ')}}
-						{{ Form::textarea('content','',['class'=>'form-control'])}}
+						{{ Form::textarea('content','',['id'=>'editor'])}}
 						<span class="text-danger">{{ $errors->first('content')}}</span>
 					</div>
 				</div>
@@ -41,6 +46,11 @@
 						{{Form::label('Logo:')}}
 						<input multiple="multiple" name="logo" type="file" class="form-control">
 						<span class="text-danger">{{ $errors->first('logo')}}</span>
+					</div>
+					<div class="form-group col-md-12 {{ $errors->has('address') ?'has-error':'' }}">
+						{{ Form::label('address','Address : ')}}
+						{{ Form::text('address','',['class'=>'form-control'])}}
+						<span class="text-danger">{{ $errors->first('address')}}</span>
 					</div>
 				</div>
 			</div>

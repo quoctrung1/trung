@@ -19,9 +19,16 @@
 					{{ Form::text('title',$about->title,['class'=>'form-control'])}}
 					<span class="text-danger">{{ $errors->first('title')}}</span>
 				</div>
+				<div class="form-group col-md-12 {{ $errors->has('name') ?'has-error':'' }}">
+					{{ Form::label('name','Name : ')}}
+					{{ Form::text('name',$about->name,['class'=>'form-control'])}}
+					<span class="text-danger">{{ $errors->first('name')}}</span>
+				</div>
 				<div class="form-group col-md-12 {{ $errors->has('content') ?'has-error':'' }}">
-					{{ Form::label('content','Content : ')}}
-					{{ Form::textarea('content',$about->content,['class'=>'form-control'])}}
+					{{ Form::label('content','Content: ')}}
+					<br>
+					{{ Form::textarea('content',$about->content,['id'=>'editor'])}}
+					<br>
 					<span class="text-danger">{{ $errors->first('content')}}</span>
 				</div>
 			</div>
@@ -38,8 +45,15 @@
 				</div>
 				<div class="form-group col-md-12 {{ $errors->has('logo') ?'has-error':'' }}">
 					{{Form::label('logo:','',['class'=>''])}}
-					<input multiple="multiple" name="logo" type="file" class="form-control">
+					<input name="logoo" type="file" class="form-control" id="filename">
+					{{ Form::hidden('logo', $about->logo, ['class' => 'form-control','id' => 'image_file' ]) }}
+					<p id="path">{{ $about->logo }}</p>
 					<span class="text-danger">{{ $errors->first('logo')}}</span>	
+				</div>
+				<div class="form-group col-md-12 {{ $errors->has('address') ?'has-error':'' }}">
+					{{ Form::label('address','Address : ')}}
+					{{ Form::text('address',$about->address,['class'=>'form-control'])}}
+					<span class="text-danger">{{ $errors->first('address')}}</span>
 				</div>
 			</div>
 		</div>
@@ -50,4 +64,21 @@
 		{{ Form::close() }}
 	</div>
 </div>
+<script type="text/javascript">
+	$('#filename').on('change',function(e){               
+		value = $(this).val();
+		$.ajax({
+			type: 'get',
+			url: '{{ URL::to('setvalue') }}',
+			data: {
+				value: value
+			},
+			success:function(data){
+				document.getElementById("image_file").value = data;
+				$("#path").html(data);
+			}
+		});
+	});
+	$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 @endsection

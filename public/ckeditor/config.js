@@ -1,20 +1,10 @@
-/**
- * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
- */
-
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-    // config.uiColor = '#AADC6E';
-    config.enterMode = CKEDITOR.ENTER_BR;
-    config.toolbar = 'Full';
-    config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '/ckfinder/ckfinder.html?type=images';
-    config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/ckfinder/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=images';
-    config.filebrowserFlashUploadUrl = '/ckfindervendor/ckfinder/ckfinder-laravel-package/ckfinder/public/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
-    config.filebrowserWindowWidth = '1000';
-    config.filebrowserWindowHeight = '700';
+    config.filebrowserBrowseUrl = '/kcfinder/browse.php?opener=ckeditor&type=files';
+    config.filebrowserImageBrowseUrl = '/kcfinder/browse.php?opener=ckeditor&type=images';
+ 
+  
+    config.filebrowserFlashBrowseUrl = '/kcfinder/browse.php?opener=ckeditor&type=flash';
+    config.filebrowserUploadUrl = '/kcfinder/upload.php?opener=ckeditor&type=files';
+    config.filebrowserImageUploadUrl = '/kcfinder/upload.php?opener=ckeditor&type=images';
+    config.filebrowserFlashUploadUrl = '/kcfinder/upload.php?opener=ckeditor&type=flash';
 };

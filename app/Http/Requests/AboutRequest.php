@@ -25,6 +25,8 @@ class AboutRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
             'content' => 'required|max:255',
             'phone' => 'required|numeric|',
             'email' => 'required|email',
@@ -35,6 +37,8 @@ class AboutRequest extends FormRequest
     {
         return [
             'title.required' => 'Please Enter Information.',
+            'name.required' => 'Please Enter Information.',
+            'address.required' => 'Please Enter Information.',
             'phone.required' => 'Please Enter Information.',
             'content.required' =>'Please Enter Information.',
             'email.required' => 'Please Enter Information.',

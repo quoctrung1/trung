@@ -10,8 +10,8 @@
 </div>
 <div class="card mt-3">
 	<div class="card-body col-md-12">
-		<p><b>Tên nhãn hiệu : </b>{{$category->name}}</p>
-		<p style="width: 1000px;"><b>Mô tả : </b>{{$category->description}}</p>
+		<p><b>Name : </b>{{$category->name}}</p>
+		<p style="width: 1000px;"><b>Description : </b>{!! $category->description !!}</p>
 	</div>
 </div>
 @endsection

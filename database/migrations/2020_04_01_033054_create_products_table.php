@@ -16,12 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('product_code')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description');
             $table->string('image');
             $table->integer('price');
             $table->string('slug');
-            $table->integer('quantity');
             $table->integer('promotion');
             
             $table->bigInteger('brand_id')->unsigned();

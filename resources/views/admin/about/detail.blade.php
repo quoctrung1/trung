@@ -11,11 +11,13 @@
 <div class="card">
 	<div class="card-body">
 		<div class="ml-3">
+			<p><b>Name: </b>{{$about->name}}</p>
 			<p><b>Title: </b>{{$about->title}}</p>
 			<p><b>Logo: </b><img src="{{ asset('images/'.$about->logo) }}" width="80" height=></img></p>
 			<p><b>Phone Number: </b>{{$about->phone}}</p>
-			<p><b>Content: </b>{{$about->content}}</p>
+			<p><b>Content: </b>{!! $about->content !!}</p>
 			<p><b>Email: </b>{{$about->email}}</p>
+			<p><b>Adress: </b>{{$about->address}}</p>
 			<a class="btn btn-outline-secondary" href="{{route('about.index')}}">Back</a>
 		</div>
 	</div>
