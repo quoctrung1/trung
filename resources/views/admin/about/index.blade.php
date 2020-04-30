@@ -45,7 +45,7 @@
 					<td >{{ ++$key }}</td>
 					<td><a href="{{route('about.show',$about->id)}}" style="text-decoration: none;color: black;">{{$about->title}}</td>
 						<td>{{$about->phone}}</td>
-						<td>{!! $about->content !!}</td>
+						<td>{{$about->content}}</td>
 						<td>{{$about->email}}</td>
 						<td><img src="{{ asset('images/'.$about->logo) }}" width="80" height=></img>
 						</td>

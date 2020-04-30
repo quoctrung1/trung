@@ -172,33 +172,55 @@
 									</div>
 									<span class="price"><span class="amount">{{$product->price}}$</span></span>
 								</div>
-								<div class="sort_section">
+								<div class="sort_section" style="margin-top: 15px;">
 									<ul class="sort-bar">
 										<li class="sort-bar-text">Color</li>
 										<li  class="customform" >
+											<?php
+											if (isset($colors)) {
+												$list = array();
+												foreach ($colors as $key => $color) {
+													$list[] = $color->color;
+												}
+												$list = array_unique($list);
+											}
+											?>
 											<form>
 												<div class="select-wrapper">
 													<select name="orderby" class="orderby">
-														<option value="menu_order" selected="selected">Choose an option…</option>
-														<option value="BLUE">BLUE</option>
-														<option value="RED">RED</option>
+														<option value="menu_order" selected="selected">
+														Choose an option…</option>
+														@foreach($list as $key => $color)
+														<option value="{{$color}}">{{$color}}</option>
+														@endforeach
 													</select>
 												</div>
-											</form>
+											</form> 
 										</li>
 									</ul>
 									<ul class="sort-bar">
 										<li class="sort-bar-text">Size</li>
 										<li  class="customform" >
+											<?php
+											if (isset($sizes)) {
+												$list = array();
+												foreach ($sizes as $key => $size) {
+													$list[] = $size->size;
+												}
+												$list = array_unique($list);
+											}
+											?>
 											<form>
 												<div class="select-wrapper">
 													<select name="orderby" class="orderby">
-														<option value="menu_order" selected="selected">Choose an option…</option>
-														<option value="BLUE">M</option>
-														<option value="RED">XL</option>
+														<option value="menu_order" selected="selected">
+														Choose an option…</option>
+														@foreach($list as $key => $size)
+														<option value="{{$size}}">{{$size}}</option>
+														@endforeach
 													</select>
 												</div>
-											</form>
+											</form> 
 										</li>
 									</ul>
 									<a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-success	"><i class="fas fa-cart-plus" style="font-size: 20px;"></i> <b>ADD TO CART</b></a>
